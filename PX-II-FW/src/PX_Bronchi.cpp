@@ -7,7 +7,6 @@ PX_Bronchi::PX_Bronchi(int8_t num, int8_t num_regs, SPI_shiftreg* shift_regs, ui
    _num_regs = num_regs;
 
    if((num * 2) > (_num_regs * 8)){
-       //uint8_t spare_pins[] = {D0, D1, 9, 10};
        uint8_t nextra = (num * 2) - (_num_regs * 8);
        if(nextra > spare_len){
            Serial.println("PX_Bronchi ERROR: NOT ENOUGH GPIO_PINS AVAILABLE");
@@ -27,10 +26,6 @@ PX_Bronchi::PX_Bronchi(int8_t num, int8_t num_regs, SPI_shiftreg* shift_regs, ui
        *(_bronchi_states + i) = INFLATED;
        *(_bronchi_times + i) = millis();
    }
-
-   
-   
-  // _shift_regs->clear_all();
 }
 
 PX_Bronchi::PX_Bronchi(int8_t num, SPI_shiftreg* shift_regs)
@@ -43,7 +38,6 @@ PX_Bronchi::PX_Bronchi(int8_t num, SPI_shiftreg* shift_regs)
        *(_bronchi_states + i) = EMPTY;
        *(_bronchi_times + i) = millis();
    }
-   //_shift_regs->clear_all();
 }
 
 void PX_Bronchi::inflate(int8_t idx)
